@@ -1,4 +1,4 @@
-﻿@model asp_2184587.Models.usuario
+﻿@model asp_2184587.Models.proveedor
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>suario</h4>
+    <h4>Proveedor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,40 +19,32 @@
         </dd>
 
         <dt>
-            Apellido
+            Direccion
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.apellido)
+            @Html.DisplayFor(model => model.direccion)
         </dd>
 
         <dt>
-            Fecha de Nacimiento
+            Telefono
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_nacimiento)
+            @Html.DisplayFor(model => model.telefono)
         </dd>
 
         <dt>
-             Email
+            Nombre contacto
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            Contraseña
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
+            @Html.DisplayFor(model => model.nombre_contacto)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>
