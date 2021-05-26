@@ -30,7 +30,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="percio_unitario" Type="int" />
+          <Property Name="precio_unitario" Type="int" />
           <Property Name="descripcion" Type="longtext" />
           <Property Name="cantidad" Type="int" />
           <Property Name="id_proveedor" Type="int" />
@@ -63,7 +63,7 @@
           <Property Name="apellido" Type="varchar" MaxLength="50" />
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="email" Type="varchar" MaxLength="100" />
-          <Property Name="password" Type="varchar" MaxLength="8" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="compra_ibfk_1">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
@@ -187,7 +187,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="percio_unitario" Type="Int32" />
+          <Property Name="precio_unitario" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="cantidad" Type="Int32" />
           <Property Name="id_proveedor" Type="Int32" />
@@ -288,7 +288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="inventarioEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="inventarioEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cliente" EntityType="Self.cliente" />
           <EntitySet Name="compra" EntityType="Self.compra" />
           <EntitySet Name="producto" EntityType="Self.producto" />
@@ -321,7 +321,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="inventarioModelStoreContainer" CdmEntityContainer="inventarioEntities">
+        <EntityContainerMapping StorageEntityContainer="inventarioModelStoreContainer" CdmEntityContainer="inventarioEntities1">
           <EntitySetMapping Name="cliente">
             <EntityTypeMapping TypeName="inventarioModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
@@ -348,7 +348,7 @@
               <MappingFragment StoreEntitySet="producto">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="percio_unitario" ColumnName="percio_unitario" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />

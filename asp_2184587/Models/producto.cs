@@ -22,7 +22,7 @@ namespace asp_2184587.Models
     
         public int id { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> percio_unitario { get; set; }
+        public Nullable<int> precio_unitario { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> cantidad { get; set; }
         public Nullable<int> id_proveedor { get; set; }

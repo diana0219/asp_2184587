@@ -1,4 +1,4 @@
-﻿@model IEnumerable<asp_2184587.Models.cliente>
+﻿@model IEnumerable<asp_2184587.Models.producto>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -15,10 +15,16 @@
             Nombre
         </th>
         <th>
-            Documento
+            Precio Unitario:
         </th>
         <th>
-            Email
+            Descripcion:
+        </th>
+        <th>
+            Cantidad:
+        </th>
+        <th>
+            Id Proveedor:
         </th>
         <th></th>
     </tr>
@@ -30,10 +36,17 @@
                 @Html.DisplayFor(modelItem => item.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.documento)
+                @Html.DisplayFor(modelItem => item.precio_unitario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @asp_2184587.Controllers.ProductoController.NombreProveedor(item.id_proveedor)
+
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
@@ -44,6 +57,7 @@
     }
 
 </table>
+
 
 @section scripts{
     <script>

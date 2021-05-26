@@ -14,7 +14,7 @@ namespace asp_2184587.Controllers
     
             public ActionResult Index()
             {
-                using (var db = new inventarioEntities())
+                using (var db = new inventarioEntities1())
                 {
                     return View(db.proveedor.ToList());
                 }
@@ -34,7 +34,7 @@ namespace asp_2184587.Controllers
 
                 try
                 {
-                    using (var db = new inventarioEntities())
+                    using (var db = new inventarioEntities1())
                     {
 
                         db.proveedor.Add(proveedor);
@@ -56,7 +56,7 @@ namespace asp_2184587.Controllers
             {
                 try
                 {
-                    using (var db = new inventarioEntities())
+                    using (var db = new inventarioEntities1())
                     {
                         proveedor findUser = db.proveedor.Where(a => a.id == id).FirstOrDefault();
                         return View(findUser);
@@ -75,7 +75,7 @@ namespace asp_2184587.Controllers
             {
                 try
                 {
-                    using (var db = new inventarioEntities())
+                    using (var db = new inventarioEntities1())
                     {
                         proveedor user = db.proveedor.Find(editUser.id);
 
@@ -99,7 +99,7 @@ namespace asp_2184587.Controllers
             {
                 try
                 {
-                    using (var db = new inventarioEntities())
+                    using (var db = new inventarioEntities1())
                     {
                         var findUser = db.proveedor.Find(id);
                         db.proveedor.Remove(findUser);
@@ -113,6 +113,14 @@ namespace asp_2184587.Controllers
                     return View();
                 }
             }
-
+        public ActionResult Details(int id)
+        {
+            using (var db = new inventarioEntities1())
+            {
+                var findUser = db.proveedor.Find(id);
+                return View(findUser);
+            }
         }
+
+    }
     }

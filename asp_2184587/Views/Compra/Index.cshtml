@@ -1,4 +1,4 @@
-﻿@model IEnumerable<asp_2184587.Models.cliente>
+﻿@model IEnumerable<asp_2184587.Models.compra>
 
 @{
     ViewBag.Title = "Index";
@@ -7,18 +7,21 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Nombre
+            Fecha:
         </th>
         <th>
-            Documento
+            Total:
         </th>
         <th>
-            Email
+            Id Usuario:
+        </th>
+        <th>
+            Id Cliente:
         </th>
         <th></th>
     </tr>
@@ -27,13 +30,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.documento)
+                @Html.DisplayFor(modelItem => item.total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @asp_2184587.Controllers.CompraController.NombreUsuario(item.id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_cliente)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
@@ -54,3 +60,4 @@
         })
     </script>
 }
+
