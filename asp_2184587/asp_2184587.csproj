@@ -304,6 +304,7 @@
     <Content Include="Views\Producto_Compra\ListarProducto.cshtml" />
     <Content Include="Views\Compra\ListarUsuario.cshtml" />
     <Content Include="Views\Provedor\Details.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

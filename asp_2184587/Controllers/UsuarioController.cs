@@ -5,13 +5,14 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using asp_2184587.Models;
+using System.Web.Security;
 
 
 namespace asp_2184587.Controllers
 {
     public class UsuarioController : Controller
     {
-        
+        [Authorize]
         public ActionResult Index()
         {
             using (var db = new inventarioEntities1())
@@ -136,6 +137,43 @@ namespace asp_2184587.Controllers
             }
         }
 
+        public ActionResult Login(string message ="")
+		{
+            ViewBag.Message = message;
+            return View();
+		}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Login(string user, string password)
+        {
+
+            string passEncrip = UsuarioController.HashSHA1(password);
+            using (var db = new inventarioEntities1())
+			{
+                var userLogin = db.usuario.FirstOrDefault(e => e.email == user && e.password == passEncrip);
+                if (userLogin != null)
+                {
+                    FormsAuthentication.SetAuthCookie(userLogin.email, true);
+                    Session["User"] = userLogin;
+                    return RedirectToAction("Index");
+
+                } 
+                else
+				{
+                    return Login("Verifique sus datos");
+				}
+			}
+        
+        }
+        [Authorize]
+
+        public ActionResult CloseSession()
+
+		{
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+		}
     }
 }
 
