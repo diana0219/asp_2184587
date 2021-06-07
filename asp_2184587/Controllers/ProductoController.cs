@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using asp_2184587.Models;
+using Rotativa;
 
 namespace asp_2184587.Controllers
 {
@@ -129,6 +130,34 @@ namespace asp_2184587.Controllers
                 return View();
             }
         }
+
+        public ActionResult Reporte()
+
+		{
+             var db = new inventarioEntities1();
+			
+                var query = from tabProvedor in db.proveedor
+                            join tabProducto in db.producto on tabProvedor.id equals tabProducto.id_proveedor
+                            select new Reporte
+                            {
+                                nombreProvedor = tabProvedor.nombre,
+                                telefonoProvedor = tabProvedor.telefono,
+                                direccionProvedor = tabProvedor.direccion,
+                                nombreProducto = tabProducto.nombre,
+                                precioProducto = tabProducto.precio_unitario,
+
+                            };
+                return View(query);
+			
+
+		}
+
+        public ActionResult ImprimirReporte()
+        {
+            return new ActionAsPdf("Reporte") { FileName = "Reporte.pdf" };
+
+        }
+        
 
     }
 

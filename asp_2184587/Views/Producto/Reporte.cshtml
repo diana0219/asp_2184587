@@ -1,0 +1,32 @@
+﻿@model IEnumerable<asp_2184587.Models.Reporte>
+@{
+    ViewBag.Title = "Reporte";
+
+}
+
+<h2 style="font-size=30px;">Reporte</h2>
+<table class="table">
+    <tr>
+        <th>Provedor</th>
+        <th>Telefono Provedor </th>
+        <th>Direccion Provedor</th>
+        <th>Producto</th>
+        <th>Precio Producto</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+
+    <td>@Html.DisplayFor(modelitem => item.nombreProvedor) </td>
+    <td>@Html.DisplayFor(modelitem => item.telefonoProvedor) </td>
+    <td>@Html.DisplayFor(modelitem => item.direccionProvedor) </td>
+    <td>@Html.DisplayFor(modelitem => item.nombreProducto)</td>
+    <td>@Html.DisplayFor(modelitem => item.precioProducto)</td>
+</tr>
+    }
+
+
+</table>
+
+
