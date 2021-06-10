@@ -105,7 +105,7 @@ namespace asp_2184587.Controllers
                     user.apellido = editUser.apellido;
                     user.email = editUser.email;
                     user.fecha_nacimiento = editUser.fecha_nacimiento;
-                    user.password = editUser.password;
+                    
 
                     db.SaveChanges();
                     return RedirectToAction("Index");

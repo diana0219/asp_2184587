@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="id_proveedor">Id Provedor </label>
+            <label class="control-label col-md-2" for="id_proveedor">Nombre Provedor </label>
             <div class="col-md-10">
                 @Html.Action("listarProveedores")
                 @Html.ValidationMessageFor(model => model.id_proveedor, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" />
             </div>
         </div>
     </div>
