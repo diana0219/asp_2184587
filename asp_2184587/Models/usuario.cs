@@ -11,7 +11,6 @@ namespace asp_2184587.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class usuario
     {
@@ -20,25 +19,12 @@ namespace asp_2184587.Models
         {
             this.compra = new HashSet<compra>();
         }
-
-
     
         public int id { get; set; }
-        [Required(ErrorMessage ="El campo no puede ser vacio")]
-        [StringLength(15)]
         public string nombre { get; set; }
-
-        [Required(ErrorMessage = "El campo no puede ser vacio")]
         public string apellido { get; set; }
-
-        [Required(ErrorMessage = "El campo no puede ser vacio")]
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
-
-        [Required(ErrorMessage = "El campo no puede ser vacio")]
-        [EmailAddress(ErrorMessage ="No tiene formato email")]
         public string email { get; set; }
-
-        [Required(ErrorMessage = "El campo no puede ser vacio")]
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

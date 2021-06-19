@@ -1,13 +1,13 @@
 ﻿@model asp_2184587.Models.producto
 
 @{
-    ViewBag.Title = "Crear";
+    ViewBag.Title = "Create";
 }
 
 <h2>Crear</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Producto", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -53,6 +53,11 @@
                 @Html.Action("listarProveedores")
                 @Html.ValidationMessageFor(model => model.id_proveedor, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class=" form-group">
+            <label>Imagen</label>
+            <input type="file" name="IMAGEN" />
         </div>
 
         <div class="form-group">

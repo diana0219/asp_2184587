@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using asp_2184587.Models;
 using Rotativa;
+using System.IO;
 
 namespace asp_2184587.Controllers
 {
@@ -42,24 +43,39 @@ namespace asp_2184587.Controllers
             [HttpPost]
             [ValidateAntiForgeryToken]
 
-            public ActionResult Create(producto producto)
+            public ActionResult Create(producto producto, HttpPostedFileBase IMAGEN)
             {
                 if (!ModelState.IsValid)
                     return View();
 
-                try
+                string filePath = string.Empty;
+            if (IMAGEN != null)
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
                 {
-                    using (var db = new inventarioEntities1())
-                    {
-                        db.producto.Add(producto);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                } catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "error" + ex);
-                    return View();
+                    Directory.CreateDirectory(path);
                 }
+                filePath = path + Path.GetFileName(IMAGEN.FileName);
+                string extension = Path.GetExtension(IMAGEN.FileName);
+                IMAGEN.SaveAs(filePath);
+
+            }
+
+                    try
+                    {
+                        using (var db = new inventarioEntities1())
+                        {
+                            producto.IMAGEN ="/Uploads/" + Path.GetFileName(IMAGEN.FileName);
+                            db.producto.Add(producto);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    } catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "error" + ex);
+                        return View();
+                    }
             }
          public ActionResult Details(int id)
         {
@@ -152,11 +168,12 @@ namespace asp_2184587.Controllers
 
 		}
 
-        public ActionResult ImprimirReporte()
-        {
-            return new ActionAsPdf("Reporte") { FileName = "Reporte.pdf" };
+         public ActionResult ImprimirReporte()
+         {
+                    
+           return new ActionAsPdf("Reporte") { FileName = "Reporte.pdf" };
 
-        }
+         }
         
 
     }
