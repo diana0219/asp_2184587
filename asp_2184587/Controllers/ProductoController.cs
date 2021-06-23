@@ -40,44 +40,69 @@ namespace asp_2184587.Controllers
         }
 
 
-            [HttpPost]
-            [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 
-            public ActionResult Create(producto producto, HttpPostedFileBase IMAGEN)
-            {
-                if (!ModelState.IsValid)
-                    return View();
+        public ActionResult Create(producto producto)
+        {
+            if (!ModelState.IsValid)
+                return View();
 
-                string filePath = string.Empty;
-            if (IMAGEN != null)
+            try
             {
-                string path = Server.MapPath("~/Uploads/");
-                if (!Directory.Exists(path))
+                using (var db = new inventarioEntities1())
                 {
-                    Directory.CreateDirectory(path);
+
+                    db.producto.Add(producto);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                filePath = path + Path.GetFileName(IMAGEN.FileName);
-                string extension = Path.GetExtension(IMAGEN.FileName);
-                IMAGEN.SaveAs(filePath);
 
             }
-
-                    try
-                    {
-                        using (var db = new inventarioEntities1())
-                        {
-                            producto.IMAGEN ="/Uploads/" + Path.GetFileName(IMAGEN.FileName);
-                            db.producto.Add(producto);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
-                        }
-                    } catch (Exception ex)
-                    {
-                        ModelState.AddModelError("", "error" + ex);
-                        return View();
-                    }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
             }
-         public ActionResult Details(int id)
+        }
+
+
+        //public ActionResult Create(producto producto, /*HttpPostedFileBase IMAGEN*/)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
+
+        //    string filePath = string.Empty;
+        //    if (IMAGEN != null)
+        //    {
+        //        string path = Server.MapPath("~/Uploads/");
+        //        if (!Directory.Exists(path))
+        //        {
+        //            Directory.CreateDirectory(path);
+        //        }
+        //        filePath = path + Path.GetFileName(IMAGEN.FileName);
+        //        string extension = Path.GetExtension(IMAGEN.FileName);
+        //        IMAGEN.SaveAs(filePath);
+
+        //    }
+
+        //    try
+        //    {
+        //        using (var db = new inventarioEntities1())
+        //        {
+        //            producto.IMAGEN = "/Uploads/" + Path.GetFileName(IMAGEN.FileName);
+        //            db.producto.Add(producto);
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("", "error" + ex);
+        //        return View();
+        //    }
+        //}
+        public ActionResult Details(int id)
         {
             using (var db = new inventarioEntities1())
             {
@@ -86,30 +111,30 @@ namespace asp_2184587.Controllers
             }
         }
 
-        
-           
 
-        
+
+
+
         public ActionResult Edit(int id)
         {
-            
-           using (var db = new inventarioEntities1())
-           {
+
+            using (var db = new inventarioEntities1())
+            {
                 producto productoEdit = db.producto.Where(a => a.id == id).FirstOrDefault();
 
-              return View(productoEdit);
-           }
-                
+                return View(productoEdit);
+            }
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
         public ActionResult Edit(producto productoEdit)
-		{
+        {
             try
-			{
+            {
                 using (var db = new inventarioEntities1())
-				{
+                {
                     var oldProduct = db.producto.Find(productoEdit.id);
                     oldProduct.nombre = productoEdit.nombre;
                     oldProduct.precio_unitario = productoEdit.precio_unitario;
@@ -119,14 +144,15 @@ namespace asp_2184587.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                    
-			}catch(Exception ex)
-			{
+
+            }
+            catch (Exception ex)
+            {
                 ModelState.AddModelError("", "Error" + ex);
                 return View();
-			}
+            }
 
-		}
+        }
 
         public ActionResult Delete(int id)
         {
@@ -149,34 +175,36 @@ namespace asp_2184587.Controllers
 
         public ActionResult Reporte()
 
-		{
-             var db = new inventarioEntities1();
-			
-                var query = from tabProvedor in db.proveedor
-                            join tabProducto in db.producto on tabProvedor.id equals tabProducto.id_proveedor
-                            select new Reporte
-                            {
-                                nombreProvedor = tabProvedor.nombre,
-                                telefonoProvedor = tabProvedor.telefono,
-                                direccionProvedor = tabProvedor.direccion,
-                                nombreProducto = tabProducto.nombre,
-                                precioProducto = tabProducto.precio_unitario,
+        {
+            var db = new inventarioEntities1();
 
-                            };
-                return View(query);
-			
+            var query = from tabProvedor in db.proveedor
+                        join tabProducto in db.producto on tabProvedor.id equals tabProducto.id_proveedor
+                        select new Reporte
+                        {
+                            nombreProvedor = tabProvedor.nombre,
+                            telefonoProvedor = tabProvedor.telefono,
+                            direccionProvedor = tabProvedor.direccion,
+                            nombreProducto = tabProducto.nombre,
+                            precioProducto = tabProducto.precio_unitario,
 
-		}
+                        };
+            return View(query);
 
-         public ActionResult ImprimirReporte()
-         {
-                    
-           return new ActionAsPdf("Reporte") { FileName = "Reporte.pdf" };
 
-         }
+        }
+
+        public ActionResult ImprimirReporte()
+        {
+
+            return new ActionAsPdf("Reporte") { FileName = "Reporte.pdf" };
+
+        }
+        
+
+
         
 
     }
-
 }
 

@@ -45,11 +45,14 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "linkDelete" })
+                
             </td>
         </tr>
     }
 
 </table>
+
+@Html.ActionLink("ReporteCompra", "ReporteCompra","", new { @class = "btn btn-warning" })
 
 @section scripts{
     <script>

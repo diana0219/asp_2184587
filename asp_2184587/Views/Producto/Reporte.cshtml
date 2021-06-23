@@ -4,7 +4,8 @@
 
 }
 
-<h2 style="font-size=30px;">Reporte</h2>
+<h2 style="font-size:30px;">Reporte</h2>
+
 <table class="table">
     <tr>
         <th>Provedor</th>
@@ -16,14 +17,14 @@
     </tr>
     @foreach (var item in Model)
     {
-<tr>
+        <tr>
 
-    <td>@Html.DisplayFor(modelitem => item.nombreProvedor) </td>
-    <td>@Html.DisplayFor(modelitem => item.telefonoProvedor) </td>
-    <td>@Html.DisplayFor(modelitem => item.direccionProvedor) </td>
-    <td>@Html.DisplayFor(modelitem => item.nombreProducto)</td>
-    <td>@Html.DisplayFor(modelitem => item.precioProducto)</td>
-</tr>
+            <td>@Html.DisplayFor(modelitem => item.nombreProvedor) </td>
+            <td>@Html.DisplayFor(modelitem => item.telefonoProvedor) </td>
+            <td>@Html.DisplayFor(modelitem => item.direccionProvedor) </td>
+            <td>@Html.DisplayFor(modelitem => item.nombreProducto)</td>
+            <td>@Html.DisplayFor(modelitem => item.precioProducto)</td>
+        </tr>
     }
 
 

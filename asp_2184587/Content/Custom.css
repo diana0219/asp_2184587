@@ -1,0 +1,27 @@
+﻿body {
+    font-family: 'Indie Flower', cursive;
+}
+
+
+.navbar {
+    background-color:#1ba4ca;
+    font-family: 'Indie Flower', cursive;
+}
+.navbar-inverse .navbar-brand{
+    color:#000000;
+}
+.navbar-inverse .navbar-nav > li> a{
+    color:#000000;
+}
+.imgHome{
+    max-width:50%;
+    margin: 0 auto;
+}
+.footer {
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #407b7b;
+    text-align: center;
+}

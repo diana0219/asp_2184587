@@ -1,12 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Custom.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,34 +20,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ASP_2184587 Diana", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Iniciar Sesion", "Login", "Usuario")</li>
-                          @if (User.Identity.IsAuthenticated)
-                          {
-                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
-                    <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
-                    <li>@Html.ActionLink("Compra", "Index", "Compra")</li>
-                    <li>@Html.ActionLink("Producto", "Index", "Producto")</li>
-                    <li>@Html.ActionLink("Producto_Compra", "Index", "Producto_Compra")</li>
-                    <li>@Html.ActionLink("Proveedor", "Index", "Provedor")</li>
-                    <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Usuario")</li>
-                          }
 
-                </ul>
-            </div>
-        </div>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inicio <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Acerca de</a></li>
+                            <li><a class="dropdown-item" href="#">Contacto</a></li>
+
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Iniciar Sesion", "Login", "Usuario")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
+                                <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+                                <li>@Html.ActionLink("Compra", "Index", "Compra")</li>
+                                <li>@Html.ActionLink("Producto", "Index", "Producto")</li>
+                                <li>@Html.ActionLink("Producto_Compra", "Index", "Producto_Compra")</li>
+                                <li>@Html.ActionLink("Proveedor", "Index", "Provedor")</li>
+                                <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Usuario")</li>
+                                }
+
+
+                            </ul>
+                        </div>
+</div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        <footer class="footer">
+            @RenderSection("infoFooter", required: false)
+            <p>
+                Creado por:Diana Sanabria<br /></p>
+            <p><a href="mailto.dcsanabria71@misena.edu.co">Send email</a></p>
+            <a href="https://github.com/diana0219/asp_2184587" target="_blank">Repositorio Github</a>
+            
         </footer>
     </div>
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using asp_2184587.Models;
+using System.IO;
 
 namespace asp_2184587.Controllers
 {
@@ -120,6 +121,67 @@ namespace asp_2184587.Controllers
                 return View();
             }
         }
+        public ActionResult uploadCSV()
+        {
+            return View();
+        }
 
+
+        [HttpPost]
+
+        public ActionResult uploadCSV(HttpPostedFileBase fileform)
+        {
+
+            string filePath = string.Empty;
+
+            if (fileform != null)
+            {
+                
+                string path = Server.MapPath("~/Uploads/");
+
+                
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+               
+                filePath = path + Path.GetFileName(fileform.FileName);
+                
+                string extension = Path.GetExtension(fileform.FileName);
+
+                
+                fileform.SaveAs(filePath);
+
+                string csvData = System.IO.File.ReadAllText(filePath);
+                foreach (string row in csvData.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                        var newCliente = new cliente
+                        {
+                            nombre = row.Split(';')[0],
+                            documento = row.Split(';')[1],
+                            email = row.Split(';')[2],
+
+                        };
+
+                        using (var db = new inventarioEntities1())
+                        {
+                            db.cliente.Add(newCliente);
+
+                            db.SaveChanges();
+
+                        }
+
+
+                    }
+                }
+
+            }
+            return View();
+
+
+        }
     }
 }
